@@ -11,14 +11,15 @@ Try executing this chunk by clicking the *Run* button within the chunk or by pla
 
 n <- 200
 lambda <- .5
-x <- rexp(n,rate = lambda)
+x <- pnorm(n, mean = lambda, sd = 1)
 ptk <- c(14000, 8000, 14000, 8000, 16000, 14000, 11000, 10500, 13000, 5000, 15500, 15000)
 pts = seq(0, max(ptk), by = 1)
-plot(ecdf(x), col="black")
-lines(pts, pexp(pts,rate = lambda),col="red")
-plot(ppois(x, lambda = lambda), col = "green")
-lines(pts, pexp(pts,rate = lambda), col = "red")
+plot(ecdf(ptk), col="black")
+# lines(pts, pnorm(pts, mean = 12000, sd = 3500),col="red")
+lines(pts, pnorm(pts, mean = 12000, sd = 3500),col="red")
 
+plot(pts,pbeta(pts,shape1 = 5, shape2 = 6), col = "green")
+lines(pts, pexp(pts,rate = lambda), col = "red")
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
